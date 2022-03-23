@@ -3,14 +3,15 @@ const env = require('dotenv')
 
 env.config();
 
-var mongoConnectionURI = process.env.MONGO_CONNECTION_URI || 'localhost:27017';
+var mongoConnectionURI = process.env.MONGO_CONNECTION_URI || 'mongodb://localhost:27017/NUSS-Tic-Tac-Toe';
 
 mongoose.connect(mongoConnectionURI, {
     useNewUrlParser: true,
-    useFindAndModify: false,
     useUnifiedTopology: true
-});
+}).then( () => {
+    console.log('Connected to MongoDb!');
+} );
 
-const dbConnection = mongoose.connection;
+const dbConnection = mongoose;
 
 module.exports = dbConnection;

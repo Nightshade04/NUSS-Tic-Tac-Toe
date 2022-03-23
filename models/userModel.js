@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('../utilities/dbConnection');
 
 const MatchSchema = new mongoose.Schema({
     opponentId: {

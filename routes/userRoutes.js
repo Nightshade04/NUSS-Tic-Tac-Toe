@@ -1,13 +1,10 @@
 var express = require('express');
-var router = express.Router({mergeParams: true});
-const userModel = require('../models/userModel');
+var router = express.Router({ mergeParams: true });
+const userController = require('../controllers/userController');
 
 /* GET users listing. */
-router.get('/', (req, res, next) => {
-  console.log(req.params, "FROM HERE");
-  res.send('respond with a resource');
-});
+router.get('/getmatchhistory', userController.getMatchHistory);
 
-router.put('', () => {});
+router.put('/setmatchhistory', userController.setMatchHistory);
 
 module.exports = router;

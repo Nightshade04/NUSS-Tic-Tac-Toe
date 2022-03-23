@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', miscRoutes);
-app.use('/:userId', usersRouter);
+app.use('/:userName', usersRouter);
 
 // error handler
 app.use(errorHandler);
