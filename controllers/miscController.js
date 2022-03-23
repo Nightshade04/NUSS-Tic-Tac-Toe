@@ -1,10 +1,8 @@
 const UserModel = require('../models/userModel');
 
 exports.signIn = async (req, res, next) => {
-
     var userName = req.body.userName;
     var password = req.body.password;
-
     try {
         const userFromDB = await UserModel.findOne({ 'userName': userName }, { '_id': 0 });
         var loggedInUser = {};
@@ -25,7 +23,6 @@ exports.signIn = async (req, res, next) => {
         error.status = 400;
         next(error);
     }
-
 }
 
 exports.signUp = async (req, res, next) => {
@@ -47,5 +44,4 @@ exports.signUp = async (req, res, next) => {
         error.status = 400
         next(error);
     }
-
 }

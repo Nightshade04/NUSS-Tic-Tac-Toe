@@ -1,10 +1,6 @@
 const mongoose = require('../utilities/dbConnection');
 
 const MatchSchema = new mongoose.Schema({
-    opponentId: {
-        type: String,
-        required: true
-    },
     opponentName: {
         type: String,
         required: true
