@@ -1,4 +1,4 @@
-# Profile-Server-Tic-Tac-Toe
+# NUSS-Tic-Tac-Toe
 Profile server for online matchmaking of tic tac toe hybrid.
 
 
