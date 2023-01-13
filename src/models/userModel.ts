@@ -36,6 +36,7 @@ export interface User {
     userName: string,
     profilePictureURL: string,
     emailId: string,
+    password?: string,
     matchHistory: Array<{
         opponentName: string,
         result: string,
