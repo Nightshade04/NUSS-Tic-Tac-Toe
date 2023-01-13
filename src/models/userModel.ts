@@ -1,4 +1,4 @@
-const mongoose = require('../utilities/dbConnection');
+import mongoose, { Schema } from "mongoose";
 
 const MatchSchema = new mongoose.Schema({
     opponentName: {
@@ -30,6 +30,14 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
-const UserModel = mongoose.model('user', UserSchema);
+export const UserModel = mongoose.model('user', UserSchema);
 
-module.exports = UserModel;
+export interface User {
+    userName: string,
+    profilePictureURL: string,
+    emailId: string,
+    matchHistory: Array<{
+        opponentName: string,
+        result: string,
+    }>
+}
