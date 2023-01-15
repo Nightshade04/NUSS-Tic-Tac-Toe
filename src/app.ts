@@ -1,5 +1,6 @@
 import express, { Express } from 'express';
 import * as dotenv from 'dotenv';
+import path from 'path';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { router } from './routes/router';
@@ -8,9 +9,11 @@ import { errorHandler } from './utils/errorHandler';
 import Logger from './utils/logger';
 import mongoose from 'mongoose';
 
+const envPath = path.join(__dirname, '..', '.env');
 dotenv.config({
-    path: __dirname,
+    path: envPath,
 });
+console.log(envPath)
 
 const PORT = process.env.PORT || 9000;
 const mongoDbUri = process.env.MONGO_DB_URI || 'mongodb://127.0.0.1:27017/nuss';

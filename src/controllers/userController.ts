@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { User } from '../models/userModel';
-import { createNewUser, getMatchHistory, getUser } from '../services/userService';
+import { createNewUser, getMatchHistory, getUser, setMatchHistory } from '../services/userService';
 import { encrypt } from '../utils/hasher';
 
 export const signInHandler = async (req: Request, res: Response, next: NextFunction) => {
@@ -56,7 +56,7 @@ export const getMatchHistoryHandler = async (req: Request, res: Response, next: 
     const userName = req.params.username;
     try {
         const matchHistory = await getMatchHistory(userName);
-        if(matchHistory) {
+        if (matchHistory) {
             res.status(200).send(matchHistory);
         } else {
             throw new Error(`User with name: ${userName} does not exist.`);
@@ -66,4 +66,21 @@ export const getMatchHistoryHandler = async (req: Request, res: Response, next: 
     }
 }
 
-export const setmatchHistoryHandler = async (req: Request, res: Response, next: NextFunction) => { }
+export const setmatchHistoryHandler = async (req: Request, res: Response, next: NextFunction) => {
+    const userName = req.params.username;
+    const newMatchHistoryObj = { ...req.body };
+    try {
+        const result = await setMatchHistory(userName, newMatchHistoryObj.matchHistory);
+        if (result.matchedCount == 1) {
+            if (result.modifiedCount == 1) {
+                res.status(200).send('Updated Successfully!');
+            } else {
+                throw new Error('Match History could not be updated!');
+            }
+        } else {
+            throw new Error(`User with name: ${userName} does not exist.`);
+        }
+    } catch (error) {
+        next(error);
+    }
+}
