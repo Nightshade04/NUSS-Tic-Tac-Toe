@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const MatchSchema = new mongoose.Schema({
+const MatchSchema = new Schema({
     opponentName: {
         type: String,
         required: true
@@ -10,7 +10,7 @@ const MatchSchema = new mongoose.Schema({
         required: true
     }
 });
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
     userName: {
         type: String,
         required: true
